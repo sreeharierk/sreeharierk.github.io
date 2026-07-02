@@ -1,3 +1,4 @@
+// Resume Data Arrays
 const workHistory = [
     {
         role: "Product Manager",
@@ -80,117 +81,144 @@ const writingsData = [
         preview: "A deep dive into building long-range radio infrastructure without standard cloud accessibility, balancing device power limits and hardware data packet encryption."
     }
 ];
-const routerViews = {
-    work: () => {
-        return `
-            <div class="split-layout">
-                <div>
-                    <h2 class="section-label-mono">Experience</h2>
-                    <div class="list-stack">
-                        ${workHistory.map(item => `
-                            <div class="work-block">
-                                <div class="list-item-header">
-                                    <h3 class="title-bold">${item.role}</h3>
-                                    <span class="metadata-mono">${item.date}</span>
-                                </div>
-                                <div class="subtitle-muted">${item.company}</div>
-                                <ul class="bullet-points">
-                                    ${item.bullets.map(b => `<li>${b}</li>`).join('')}
-                                </ul>
-                            </div>
-                        `).join('')}
-                    </div>
+
+// Completely flattened render logic to prevent injection blocks
+function renderWorkView() {
+    let workHTML = '';
+    for (let i = 0; i < workHistory.length; i++) {
+        const item = workHistory[i];
+        let bulletsHTML = '';
+        for (let j = 0; j < item.bullets.length; j++) {
+            bulletsHTML += '<li>' + item.bullets[j] + '</li>';
+        }
+        workHTML += `
+            <div class="work-block" style="margin-bottom: 32px;">
+                <div class="list-item-header">
+                    <h3 class="title-bold">${item.role}</h3>
+                    <span class="metadata-mono">${item.date}</span>
                 </div>
-                <div>
-                    <h2 class="section-label-mono">Education & Honors</h2>
-                    <div class="list-stack" style="gap: 32px;">
-                        <div>
-                            <div class="list-item-header">
-                                <h3 class="title-bold" style="font-size: 1rem;">${academicData.degree}</h3>
-                                <span class="metadata-mono">${academicData.period}</span>
-                            </div>
-                            <div class="subtitle-muted" style="margin-bottom: 4px;">${academicData.college}</div>
-                            <p class="subtitle-muted" style="font-size: 0.85rem; font-style: italic;">${academicData.details}</p>
-                        </div>
-                        <hr style="border: 0; height: 1px; background: var(--border);">
-                        <div>
-                            <ul class="bullet-points">
-                                ${recognitionData.map(r => `<li>${r}</li>`).join('')}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-    },
-    projects: () => {
-        return `
-            <h2 class="section-label-mono">Selected Projects</h2>
-            <div class="list-stack" style="gap: 24px; margin-bottom: 48px;">
-                ${hardwareProjects.map(proj => `
-                    <div class="interactive-row">
-                        <div class="list-item-header">
-                            <h3 class="title-bold">${proj.title}</h3>
-                        </div>
-                        <p class="subtitle-muted" style="margin: 4px 0 0 0; font-size: 0.95rem;">${proj.desc}</p>
-                    </div>
-                `).join('')}
-            </div>
-            
-            <h2 class="section-label-mono">Open Source</h2>
-            <div class="list-stack">
-                ${openSourceContributions.map(oss => `
-                    <div class="interactive-row">
-                        <h3 class="title-bold">${oss.title}</h3>
-                        <p class="subtitle-muted" style="margin: 4px 0 0 0; font-size: 0.95rem;">${oss.desc}</p>
-                    </div>
-                `).join('')}
-            </div>
-        `;
-    },
-    writings: () => {
-        return `
-            <h2 class="section-label-mono">Writings</h2>
-            <div class="list-stack" style="gap: 24px;">
-                ${writingsData.map(post => `
-                    <a href="#" class="interactive-row" onclick="event.preventDefault();">
-                        <div class="list-item-header">
-                            <h3 class="title-bold" style="color: var(--accent);">${post.title}</h3>
-                            <span class="metadata-mono">${post.date}</span>
-                        </div>
-                        <p class="subtitle-muted" style="margin: 4px 0 8px 0; font-size: 0.95rem;">${post.preview}</p>
-                        <span class="metadata-mono" style="font-size: 0.75rem;">${post.readTime}</span>
-                    </a>
-                `).join('')}
+                <div class="subtitle-muted">${item.company}</div>
+                <ul class="bullet-points">${bulletsHTML}</ul>
             </div>
         `;
     }
-};
 
+    let awardsHTML = '';
+    for (let k = 0; k < recognitionData.length; k++) {
+        awardsHTML += '<li>' + recognitionData[k] + '</li>';
+    }
+
+    return `
+        <div class="split-layout">
+            <div>
+                <h2 class="section-label-mono">Experience</h2>
+                <div class="list-stack">${workHTML}</div>
+            </div>
+            <div>
+                <h2 class="section-label-mono">Education & Honors</h2>
+                <div class="list-stack" style="gap: 32px;">
+                    <div>
+                        <div class="list-item-header">
+                            <h3 class="title-bold" style="font-size: 1rem;">${academicData.degree}</h3>
+                            <span class="metadata-mono">${academicData.period}</span>
+                        </div>
+                        <div class="subtitle-muted" style="margin-bottom: 4px;">${academicData.college}</div>
+                        <p class="subtitle-muted" style="font-size: 0.85rem; font-style: italic;">${academicData.details}</p>
+                    </div>
+                    <hr style="border: 0; height: 1px; background: var(--border);">
+                    <div>
+                        <ul class="bullet-points">${awardsHTML}</ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function renderProjectsView() {
+    let projectsHTML = '';
+    for (let i = 0; i < hardwareProjects.length; i++) {
+        const proj = hardwareProjects[i];
+        projectsHTML += `
+            <div class="interactive-row" style="margin-bottom: 16px;">
+                <div class="list-item-header">
+                    <h3 class="title-bold">${proj.title}</h3>
+                </div>
+                <p class="subtitle-muted" style="margin: 4px 0 0 0; font-size: 0.95rem;">${proj.desc}</p>
+            </div>
+        `;
+    }
+
+    let ossHTML = '';
+    for (let j = 0; j < openSourceContributions.length; j++) {
+        const oss = openSourceContributions[j];
+        ossHTML += `
+            <div class="interactive-row">
+                <h3 class="title-bold">${oss.title}</h3>
+                <p class="subtitle-muted" style="margin: 4px 0 0 0; font-size: 0.95rem;">${oss.desc}</p>
+            </div>
+        `;
+    }
+
+    return `
+        <h2 class="section-label-mono">Selected Projects</h2>
+        <div class="list-stack" style="margin-bottom: 48px;">${projectsHTML}</div>
+        <h2 class="section-label-mono">Open Source</h2>
+        <div class="list-stack">${ossHTML}</div>
+    `;
+}
+
+function renderWritingsView() {
+    let writingsHTML = '';
+    for (let i = 0; i < writingsData.length; i++) {
+        const post = writingsData[i];
+        writingsHTML += `
+            <a href="#" class="interactive-row" style="margin-bottom: 16px;" onclick="event.preventDefault();">
+                <div class="list-item-header">
+                    <h3 class="title-bold" style="color: var(--accent);">${post.title}</h3>
+                    <span class="metadata-mono">${post.date}</span>
+                </div>
+                <p class="subtitle-muted" style="margin: 4px 0 8px 0; font-size: 0.95rem;">${post.preview}</p>
+                <span class="metadata-mono" style="font-size: 0.75rem;">${post.readTime}</span>
+            </a>
+        `;
+    }
+    return `
+        <h2 class="section-label-mono">Writings</h2>
+        <div class="list-stack">${writingsHTML}</div>
+    `;
+}
+
+// Global Tab Manager Engine
 function setView(viewName) {
     const container = document.getElementById('view-content');
-    if (routerViews[viewName]) {
-        container.innerHTML = routerViews[viewName]();
-        
-        // Update active class on tab buttons
-        document.querySelectorAll('.tab-link').forEach(btn => {
-            if (btn.getAttribute('data-tab') === viewName) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
-        });
+    if (!container) return;
+
+    if (viewName === 'work') container.innerHTML = renderWorkView();
+    if (viewName === 'projects') container.innerHTML = renderProjectsView();
+    if (viewName === 'writings') container.innerHTML = renderWritingsView();
+
+    // Toggle CSS classes on elements dynamically
+    const tabs = document.querySelectorAll('.tab-link');
+    for (let i = 0; i < tabs.length; i++) {
+        if (tabs[i].getAttribute('data-tab') === viewName) {
+            tabs[i].classList.add('active');
+        } else {
+            tabs[i].classList.remove('active');
+        }
     }
 }
 
+// Light / Dark Global Storage Configurations
 function initTheme() {
     const themeToggle = document.getElementById('theme-toggle');
+    if (!themeToggle) return;
+
     const savedTheme = localStorage.getItem('theme') || 'light';
-    
     document.documentElement.setAttribute('data-theme', savedTheme);
     themeToggle.textContent = savedTheme === 'light' ? '⊙ Light' : '☾ Dark';
 
-    themeToggle.addEventListener('click', () => {
+    themeToggle.addEventListener('click', function() {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
         
@@ -199,15 +227,17 @@ function initTheme() {
         localStorage.setItem('theme', nextTheme);
     });
 }
-window.addEventListener('DOMContentLoaded', () => {
-    initTheme();
-    setView('work'); // Load work view by default
 
-    // Attach click listeners to tab navigation buttons
-    document.querySelectorAll('.tab-link').forEach(btn => {
-        btn.addEventListener('click', (e) => {
+// Kickstart process orchestration cleanly
+document.addEventListener('DOMContentLoaded', function() {
+    initTheme();
+    setView('work');
+
+    const tabButtons = document.querySelectorAll('.tab-link');
+    for (let i = 0; i < tabButtons.length; i++) {
+        tabButtons[i].addEventListener('click', function(e) {
             const targetTab = e.target.getAttribute('data-tab');
             setView(targetTab);
         });
-    });
+    }
 });

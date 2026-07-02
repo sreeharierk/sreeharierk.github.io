@@ -7,26 +7,28 @@
     
     <style>
         /* -------------------------------------------------------------
-           Marius-Inspired Pro UI System Variables & Reset 
+           Charitra Jain Inspired Colorway, Shadow Maps & Base Specs
            ------------------------------------------------------------- */
         :root[data-theme="light"] {
-            --bg: #ffffff;
-            --text-primary: #000000;
-            --text-secondary: #646464;
-            --border-subtle: #eaeaea;
-            --accent-link: #0022ff;
-            --tag-surface: #f6f6f6;
-            --active-indicator: #000000;
+            --bg: #faf7f2;               /* Signature soft warm cream background */
+            --text-primary: #1c1917;     /* Deep stone/charcoal text */
+            --text-secondary: #686256;   /* Warm muted earth tone for subtitles */
+            --card-surface: #ffffff;     /* Clean white surfaces for containers */
+            --border-clean: #ebd9c3;     /* Muted cream/gold border tracks */
+            --shadow-soft: 0 4px 20px -2px rgba(40, 32, 20, 0.04), 0 2px 6px -1px rgba(40, 32, 20, 0.02);
+            --accent: #d97706;           /* Amber/gold minimal interactive accents */
+            --tag-bg: #f5f0e6;           /* Editorial tag chip surface */
         }
 
         :root[data-theme="dark"] {
-            --bg: #000000;
-            --text-primary: #ffffff;
-            --text-secondary: #8a8a8f;
-            --border-subtle: #1c1c1e;
-            --accent-link: #3a7fff;
-            --tag-surface: #1c1c1e;
-            --active-indicator: #ffffff;
+            --bg: #121110;               /* Rich obsidian deep-charcoal tone */
+            --text-primary: #f4f4f0;     /* Warm white text core */
+            --text-secondary: #999388;   /* Soft slate-gray variant */
+            --card-surface: #1a1917;     /* Off-black raised panel cards */
+            --border-clean: #2d2a26;     /* Low-contrast dark containment tracks */
+            --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.2);
+            --accent: #f59e0b;
+            --tag-bg: #242220;
         }
 
         * {
@@ -39,291 +41,288 @@
         body {
             background-color: var(--bg);
             color: var(--text-primary);
-            /* System Font Stack used by high-end UI engineers for native speed */
+            /* Premium clean typography config mimicking layout weight metrics */
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             font-size: 15px;
-            line-height: 1.5;
-            letter-spacing: -0.015em;
-            padding: 80px 24px;
-            transition: background-color 0.15s ease, color 0.15s ease;
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+            padding: 90px 24px;
+            transition: background-color 0.25s ease, color 0.25s ease;
         }
 
-        .layout-container {
-            max-width: 620px;
+        .canvas-layout {
+            max-width: 660px;
             margin: 0 auto;
         }
 
         /* -------------------------------------------------------------
-           Header & Main Nav Area Layout
+           Header Framework & Interactive Theme Controls
            ------------------------------------------------------------- */
-        .navigation-row {
+        .top-navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 72px;
+        }
+
+        .site-mark {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .theme-toggle-btn {
+            background: var(--card-surface);
+            color: var(--text-primary);
+            border: 1px solid var(--border-clean);
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 100px;
+            box-shadow: var(--shadow-soft);
+            cursor: pointer;
+            transition: transform 0.1s ease, border-color 0.2s;
+        }
+
+        .theme-toggle-btn:hover {
+            border-color: var(--text-primary);
+            transform: translateY(-1px);
+        }
+
+        /* -------------------------------------------------------------
+           Branded Identity Bio Module
+           ------------------------------------------------------------- */
+        .intro-hero {
             margin-bottom: 56px;
         }
 
-        .site-signature {
-            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace;
-            font-weight: 600;
-            font-size: 0.85rem;
-            letter-spacing: -0.02em;
-        }
-
-        .utility-btn {
-            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace;
-            font-size: 0.75rem;
-            background: transparent;
-            color: var(--text-secondary);
-            border: 1px solid var(--border-subtle);
-            padding: 4px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .utility-btn:hover {
-            color: var(--text-primary);
-            border-color: var(--text-primary);
-        }
-
-        /* -------------------------------------------------------------
-           Identity Hero Module
-           ------------------------------------------------------------- */
-        .profile-hero {
-            margin-bottom: 48px;
-        }
-
-        .identity-header {
+        .identity-line {
             display: flex;
-            align-items: baseline;
-            gap: 12px;
-            margin-bottom: 12px;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
         }
 
         h1 {
-            font-size: 1.85rem;
+            font-size: 2.2rem;
             font-weight: 700;
-            letter-spacing: -0.035em;
-            color: var(--text-primary);
+            letter-spacing: -0.04em;
         }
 
-        .status-badge {
-            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace;
-            font-size: 0.68rem;
+        .pill-tag {
+            font-size: 0.72rem;
+            font-weight: 600;
             color: var(--text-secondary);
-            background: var(--tag-surface);
-            padding: 2px 8px;
-            border-radius: 4px;
-            border: 1px solid var(--border-subtle);
+            background: var(--tag-bg);
+            padding: 3px 10px;
+            border-radius: 100px;
+            border: 1px solid var(--border-clean);
         }
 
-        .profile-bio {
-            font-size: 1rem;
+        .profile-bio-text {
+            font-size: 1.1rem;
             color: var(--text-secondary);
-            margin-bottom: 20px;
             font-weight: 400;
+            margin-bottom: 24px;
+            letter-spacing: -0.015em;
         }
 
-        .interactive-links-row {
+        .directory-links {
             display: flex;
-            gap: 16px;
+            gap: 20px;
         }
 
-        .clean-anchor {
+        .editorial-anchor {
             color: var(--text-primary);
             text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            border-bottom: 1px solid var(--text-primary);
-            padding-bottom: 1px;
-            transition: color 0.2s, border-color 0.2s;
+            font-weight: 600;
+            font-size: 0.92rem;
+            border-bottom: 2px solid var(--border-clean);
+            padding-bottom: 2px;
+            transition: color 0.15s, border-color 0.15s;
         }
 
-        .clean-anchor:hover {
-            color: var(--accent-link);
-            border-color: var(--accent-link);
+        .editorial-anchor:hover {
+            color: var(--accent);
+            border-color: var(--accent);
         }
 
         /* -------------------------------------------------------------
-           Astro-Inspired Custom Tab Router Layout
+           Tab Layout Routing Framework
            ------------------------------------------------------------- */
-        .navigation-tabs-wrapper {
-            border-bottom: 1px solid var(--border-subtle);
-            margin-bottom: 36px;
+        .tabs-menu-container {
+            border-bottom: 1px solid var(--border-clean);
+            margin-bottom: 40px;
         }
 
-        .tab-layout-row {
+        .tabs-inner-flex {
             display: flex;
-            gap: 4px;
+            gap: 8px;
             margin-bottom: -1px;
         }
 
-        .tab-trigger-btn {
+        .tab-btn {
             background: transparent;
             border: none;
             color: var(--text-secondary);
-            font-size: 0.92rem;
+            font-size: 0.95rem;
             font-weight: 500;
-            padding: 8px 12px;
+            padding: 10px 16px;
             cursor: pointer;
             position: relative;
             font-family: inherit;
-            letter-spacing: inherit;
         }
 
-        .tab-trigger-btn.active-tab {
+        .tab-btn.tab-active {
             color: var(--text-primary);
-            font-weight: 600;
+            font-weight: 700;
         }
 
-        .tab-trigger-btn.active-tab::after {
+        .tab-btn.tab-active::after {
             content: "";
             position: absolute;
             bottom: 0;
-            left: 12px;
-            right: 12px;
-            height: 1px;
-            background-color: var(--active-indicator);
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--text-primary);
         }
 
         /* -------------------------------------------------------------
-           Dynamic Grid Engine Components
+           Dynamic Grid Layout Structure Panels
            ------------------------------------------------------------- */
-        .split-grid-view {
+        .split-dashboard-grid {
             display: grid;
-            grid-template-columns: 1.3fr 1fr;
+            grid-template-columns: 1.35fr 1fr;
             gap: 40px;
         }
 
         @media (max-width: 640px) {
-            .split-grid-view { grid-template-columns: 1fr; gap: 36px; }
-            body { padding: 40px 16px; }
+            .split-dashboard-grid { grid-template-columns: 1fr; gap: 40px; }
+            body { padding: 50px 16px; }
         }
 
-        .column-headline-mono {
-            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace;
+        .section-label-mono {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
             font-size: 0.72rem;
             text-transform: uppercase;
             color: var(--text-secondary);
-            letter-spacing: 0.06em;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .modular-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 28px;
-        }
-
-        .experience-node-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 2px;
-        }
-
-        .bold-node-title {
-            font-size: 0.98rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .mono-timestamp {
-            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace;
-            font-size: 0.76rem;
-            color: var(--text-secondary);
-        }
-
-        .node-subtitle-muted {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-        }
-
-        .minimal-bullet-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .minimal-bullet-list li {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            position: relative;
-            padding-left: 14px;
-        }
-
-        .minimal-bullet-list li::before {
-            content: "·";
-            position: absolute;
-            left: 0;
-            color: var(--text-primary);
+            letter-spacing: 0.08em;
+            margin-bottom: 24px;
             font-weight: 700;
         }
 
-        /* -------------------------------------------------------------
-           Premium Custom Embedded Items Styles
-           ------------------------------------------------------------- */
-        .interactive-showcase-box {
-            display: block;
-            text-decoration: none;
-            color: inherit;
-            border: 1px solid var(--border-subtle);
-            padding: 20px;
-            border-radius: 6px;
-            transition: background-color 0.1s ease, border-color 0.1s ease;
-            margin-bottom: 12px;
+        .vertical-layout-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
         }
 
-        .interactive-showcase-box:hover {
-            background-color: var(--hover-bg);
-            border-color: var(--text-primary);
+        /* Charitra-Inspired Card Design Frame */
+        .editorial-card {
+            background-color: var(--card-surface);
+            border: 1px solid var(--border-clean);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s;
         }
 
-        .inline-text-link {
+        .editorial-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+
+        .card-meta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 4px;
+        }
+
+        .card-bold-header {
+            font-size: 1.05rem;
+            font-weight: 700;
             color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 600;
-            border-bottom: 1px solid var(--text-secondary);
+            letter-spacing: -0.02em;
         }
 
-        .inline-text-link:hover {
-            color: var(--accent-link);
-            border-color: var(--accent-link);
+        .card-mono-timestamp {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-weight: 500;
         }
 
-        /* HIGH PERFORMANCE HORIZONTAL IMAGE SLIDER */
-        .horizontal-slider-frame {
+        .card-subtitle-subtle {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            margin-bottom: 14px;
+        }
+
+        .card-custom-bullets {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .card-custom-bullets li {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 16px;
+            line-height: 1.5;
+        }
+
+        .card-custom-bullets li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Horizontal Widescreen Image Slider */
+        .slider-frame-wrapper {
             width: 100%;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             scroll-behavior: smooth;
-            border-radius: 4px;
-            border: 1px solid var(--border-subtle);
-            margin: 12px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-clean);
+            margin-top: 14px;
             scrollbar-width: none;
         }
-        .horizontal-slider-frame::-webkit-scrollbar { display: none; }
-        .slider-flex-track { display: flex; }
-        .slider-image-element {
+        .slider-frame-wrapper::-webkit-scrollbar { display: none; }
+        .slider-internal-track { display: flex; }
+        .slider-image-node {
             width: 100%;
             flex-shrink: 0;
             scroll-snap-align: start;
             object-fit: cover;
             aspect-ratio: 16 / 9;
-            background: var(--tag-surface);
+            background: var(--tag-bg);
         }
 
-        .system-footer {
-            margin-top: 72px;
-            border-top: 1px solid var(--border-subtle);
-            padding-top: 20px;
+        .anchor-card-wrapper {
+            display: block;
+            text-decoration: none;
+            color: inherit;
         }
 
-        .footer-mono-text {
-            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace;
+        .site-footer {
+            margin-top: 88px;
+            border-top: 1px solid var(--border-clean);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-text-mono {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
             font-size: 0.75rem;
             color: var(--text-secondary);
         }
@@ -331,60 +330,61 @@
 </head>
 <body>
 
-    <main class="layout-container">
-        <!-- Main Top Bar Nav Module -->
-        <nav class="navigation-row">
-            <div class="site-signature">sreehari.s</div>
-            <div class="navigation-controls">
-                <button id="theme-toggle" class="utility-btn" aria-label="Toggle System UI Color">Light</button>
+    <main class="canvas-layout">
+        <!-- Top App Navigation Module -->
+        <nav class="top-navbar">
+            <div class="site-mark">Sreehari S.</div>
+            <div>
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Switch UI Theme">Mode</button>
             </div>
         </nav>
 
-        <!-- Core Profile Branding Layer -->
-        <header class="profile-hero">
-            <div class="identity-header">
+        <!-- Main Bio Frame Element -->
+        <header class="intro-hero">
+            <div class="identity-line">
                 <h1>Sreehari S</h1>
-                <span class="status-badge">2026</span>
+                <span class="pill-tag">Product</span>
             </div>
-            <p class="profile-bio">
-                Social entrepreneur turned product manager based in India[cite: 1]. 3+ years combining product strategy, business development, and community-driven data solutions[cite: 1].
+            <p class="profile-bio-text">
+                Social entrepreneur turned product manager based in India[cite: 1]. Specializing in scaling product strategies, optimizing hardware visibility, and deploying data frameworks[cite: 1].
             </p>
-            <div class="interactive-links-row">
-                <a href="mailto:sreeharierk@gmail.com" class="clean-anchor">Email</a>
-                <a href="https://linkedin.com/in/sreeharierk" target="_blank" class="clean-anchor">LinkedIn</a>
-                <a href="https://github.com/sreeharierk" target="_blank" class="clean-anchor">GitHub</a>
+            <div class="directory-links">
+                <a href="mailto:sreeharierk@gmail.com" class="editorial-anchor">Email</a>
+                <a href="https://linkedin.com/in/sreeharierk" target="_blank" class="editorial-anchor">LinkedIn</a>
+                <a href="https://github.com/sreeharierk" target="_blank" class="editorial-anchor">GitHub</a>
             </div>
         </header>
 
-        <!-- Dynamic View Router Navigation Segment -->
-        <div class="navigation-tabs-wrapper">
-            <div class="tab-layout-row">
-                <button class="tab-trigger-btn active-tab" data-tab="work">Work</button>
-                <button class="tab-trigger-btn" data-tab="projects">Projects</button>
-                <button class="tab-trigger-btn" data-tab="writings">Writings</button>
+        <!-- Tabbed Router UI Navigation Menu -->
+        <div class="tabs-menu-container">
+            <div class="tabs-inner-flex">
+                <button class="tab-btn tab-active" data-tab="work">Work</button>
+                <button class="tab-btn" data-tab="projects">Projects</button>
+                <button class="tab-btn" data-tab="writings">Writings</button>
             </div>
         </div>
 
-        <!-- System Routing Mount Node -->
+        <!-- System Target Content Node Container -->
         <div id="view-content"></div>
 
-        <!-- Base Layout Info Footer -->
-        <footer class="system-footer">
-            <p class="footer-mono-text">Last updated: July 2026</p>
+        <!-- Global Site Footer Information Block -->
+        <footer class="site-footer">
+            <p class="footer-text-mono">Portfolio Index — 2026</p>
+            <p class="footer-text-mono">Kochi, IN</p>
         </footer>
     </main>
 
     <script>
-        // High Quality Managed Resume Structures Layer
-        const workHistory = [
+        // Resume Structural Configuration Data Arrays
+        const professionalHistory = [
             {
                 role: "Product Manager",
                 company: "SectorQube",
                 date: "2024 — 2025",
                 bullets: [
-                    "Designed QC & Technician applications, boosting operational visibility and cutting core system bugs by 30%[cite: 1].",
-                    "Developed unified SOPs for installation, maintenance, and assembly, reducing factory floor production delays by 20%[cite: 1].",
-                    "Built ML model components optimized for intrusion detection (92% accuracy) and predictive hardware analytics[cite: 1]."
+                    "Designed QC & Technician apps, boosting visibility and cutting bugs by 30%[cite: 1].",
+                    "Developed corporate SOPs, reducing production errors and delays by 20%[cite: 1].",
+                    "Built ML classification structures achieving up to 92% analytical accuracy profiles[cite: 1]."
                 ]
             },
             {
@@ -392,78 +392,81 @@
                 company: "Bitnut Technologies",
                 date: "2021 — 2024",
                 bullets: [
-                    "Conducted over 100 customer interviews to validate high-durability telecommunication platforms[cite: 1].",
-                    "Developed Asturlab, a custom long-range hardware radio network with integrated hardware encryption layers[cite: 1]."
+                    "Executed thorough competitor matrix research to slash operational burn rates by 50%[cite: 1].",
+                    "Engineered Asturlab: a long-range, hardware-encrypted radio transmission system[cite: 1]."
                 ]
             }
         ];
 
-        const projectRecords = [
+        const customProjectRecords = [
             {
-                title: "NDSM Stress Tech Anomaly Detector",
-                desc: "Neurofeedback instrumentation using BioAmp processing blocks to dynamically trigger auditory feedback arrays based on raw biometric trends[cite: 1].",
+                title: "Neurofeedback Stress Framework (NDSM)",
+                desc: "BioAmp hardware instrumentation capturing raw EEG waves processed via deep learning logic to handle real-time anxiety management applications[cite: 1].",
                 images: ["pic1.jpg", "pic2.jpg"], 
-                link: "https://github.com/sreeharierk"
+                repo: "https://github.com/sreeharierk"
             },
             {
-                title: "RGPR Landslide Mapping Radar",
-                desc: "Convolutional neural network mapping tools engineered to scan subsurface Ground Penetrating Radar data for anomalies during natural disaster operations[cite: 1].",
+                title: "Subsurface Radar Machine Vision (RGPR)",
+                desc: "Convolutional neural network tools deployed to parse Ground Penetrating Radar simulations to locate survivors under debris fields[cite: 1].",
                 images: ["pic3.jpg"],
-                link: "https://github.com/sreeharierk"
+                repo: "https://github.com/sreeharierk"
             }
         ];
 
-        const academicProfile = {
+        const educationalBackground = {
             degree: "B.Tech, Electronics & Communication",
-            college: "NSS College of Engineering",
-            period: "2018 — 2022",
-            details: "Student Council Association Chairperson (ELACSTA) & Institution's Innovation Coordinator[cite: 1]."
+            school: "NSS College of Engineering",
+            timeline: "2018 — 2022",
+            summary: "Elected Student Body Association Chairperson & Innovation Council Coordinator[cite: 1]."
         };
 
-        function renderWorkTemplate() {
-            let workHTML = '';
-            for (let i = 0; i < workHistory.length; i++) {
-                const item = workHistory[i];
-                let bulletsHTML = '';
-                for (let j = 0; j < item.bullets.length; j++) {
-                    bulletsHTML += '<li>' + item.bullets[j] + '</li>';
+        // Component Assembly Render Framework Routine
+        function viewAssemblerWork() {
+            let jobsCards = '';
+            for (let i = 0; i < professionalHistory.length; i++) {
+                const job = professionalHistory[i];
+                let points = '';
+                for (let j = 0; j < job.bullets.length; j++) {
+                    points += '<li>' + job.bullets[j] + '</li>';
                 }
-                workHTML += `
-                    <div>
-                        <div class="experience-node-header">
-                            <h3 class="bold-node-title">${item.role}</h3>
-                            <span class="mono-timestamp">${item.date}</span>
+                jobsCards += `
+                    <div class="editorial-card">
+                        <div class="card-meta-row">
+                            <h3 class="card-bold-header">${job.role}</h3>
+                            <span class="card-mono-timestamp">${job.date}</span>
                         </div>
-                        <div class="node-subtitle-muted">${item.company}</div>
-                        <ul class="minimal-bullet-list">${bulletsHTML}</ul>
+                        <div class="card-subtitle-subtle">${job.company}</div>
+                        <ul class="card-custom-bullets">${points}</ul>
                     </div>
                 `;
             }
 
             return `
-                <a href="Sreehari_S_FlowCV_Resume_2026-07-02.pdf" target="_blank" class="interactive-showcase-box">
-                    <div class="experience-node-header">
-                        <h3 class="bold-node-title">View Verified Resume PDF ↗</h3>
-                        <span class="mono-timestamp">PDF Document</span>
+                <a href="Sreehari_S_FlowCV_Resume_2026-07-02.pdf" target="_blank" class="anchor-card-wrapper">
+                    <div class="editorial-card" style="border-color: var(--accent); margin-bottom: 32px;">
+                        <div class="card-meta-row">
+                            <h3 class="card-bold-header" style="color: var(--accent);">Download Full Dossier Resume ↗</h3>
+                            <span class="card-mono-timestamp">PDF File</span>
+                        </div>
+                        <p class="card-subtitle-subtle" style="margin-bottom:0; font-size: 0.88rem;">Access complete structural information print out sheets verified.</p>
                     </div>
-                    <p class="node-subtitle-muted" style="margin-top: 4px; margin-bottom: 0; font-size: 0.88rem;">Click to pull the full professional dossier sheet.</p>
                 </a>
                 
-                <div class="split-grid-view" style="margin-top: 36px;">
+                <div class="split-dashboard-grid">
                     <div>
-                        <h2 class="column-headline-mono">Experience</h2>
-                        <div class="modular-stack">${workHTML}</div>
+                        <h2 class="section-label-mono">Experience</h2>
+                        <div class="vertical-layout-stack">${jobsCards}</div>
                     </div>
                     <div>
-                        <h2 class="column-headline-mono">Education</h2>
-                        <div class="modular-stack">
-                            <div>
-                                <div class="experience-node-header">
-                                    <h3 class="bold-node-title" style="font-size: 0.95rem;">${academicProfile.degree}</h3>
-                                    <span class="mono-timestamp">${academicProfile.period}</span>
+                        <h2 class="section-label-mono">Education</h2>
+                        <div class="vertical-layout-stack">
+                            <div class="editorial-card">
+                                <div class="card-meta-row">
+                                    <h3 class="card-bold-header" style="font-size: 0.95rem;">${educationalBackground.degree}</h3>
+                                    <span class="card-mono-timestamp">${educationalBackground.timeline}</span>
                                 </div>
-                                <div class="node-subtitle-muted" style="margin-bottom: 2px;">${academicProfile.college}</div>
-                                <p class="node-subtitle-muted" style="font-size: 0.84rem; font-style: italic;">${academicProfile.details}</p>
+                                <div class="card-subtitle-subtle" style="margin-bottom: 6px;">${educationalBackground.school}</div>
+                                <p class="card-subtitle-subtle" style="font-size: 0.84rem; margin-bottom: 0; font-style: italic;">${educationalBackground.summary}</p>
                             </div>
                         </div>
                     </div>
@@ -471,90 +474,92 @@
             `;
         }
 
-        function renderProjectsTemplate() {
-            let projectsHTML = '';
-            for (let i = 0; i < projectRecords.length; i++) {
-                const proj = projectRecords[i];
-                let imagesHTML = '';
-                for (let j = 0; j < proj.images.length; j++) {
-                    imagesHTML += `<img src="${proj.images[j]}" alt="Portfolio Slider Resource" class="slider-image-element">`;
+        function viewAssemblerProjects() {
+            let dynamicProjectsHTML = '';
+            for (let i = 0; i < customProjectRecords.length; i++) {
+                const item = customProjectRecords[i];
+                let trackingTracks = '';
+                for (let j = 0; j < item.images.length; j++) {
+                    trackingTracks += `<img src="${item.images[j]}" alt="Project Slide Element" class="slider-image-node">`;
                 }
 
-                projectsHTML += `
-                    <div class="interactive-showcase-box" style="margin-bottom: 24px;">
-                        <div class="experience-node-header">
-                            <h3 class="bold-node-title">${proj.title}</h3>
-                            <a href="${proj.link}" target="_blank" class="mono-timestamp inline-text-link">Repository ↗</a>
+                dynamicProjectsHTML += `
+                    <div class="editorial-card">
+                        <div class="card-meta-row">
+                            <h3 class="card-bold-header">${item.title}</h3>
+                            <a href="${item.repo}" target="_blank" class="card-mono-timestamp editorial-anchor">Repository ↗</a>
                         </div>
-                        <p class="node-subtitle-muted" style="margin: 4px 0 12px 0; font-size: 0.9rem;">${proj.desc}</p>
+                        <p class="card-subtitle-subtle" style="margin-top: 4px; margin-bottom: 12px; font-size: 0.92rem;">${item.desc}</p>
                         
-                        <div class="horizontal-slider-frame">
-                            <div class="slider-flex-track">${imagesHTML}</div>
+                        <div class="slider-frame-wrapper">
+                            <div class="slider-internal-track">${trackingTracks}</div>
                         </div>
                     </div>
                 `;
             }
             return `
-                <h2 class="column-headline-mono">Engineering Components</h2>
-                <div class="modular-stack">${projectsHTML}</div>
+                <h2 class="section-label-mono">Core Engineering Prototypes</h2>
+                <div class="vertical-layout-stack">${dynamicProjectsHTML}</div>
             `;
         }
 
-        function renderWritingsTemplate() {
+        function viewAssemblerWritings() {
             return `
-                <h2 class="column-headline-mono">Publications</h2>
-                <div class="interactive-showcase-box">
-                    <h3 class="bold-node-title">Systems Architecture Case: Bitnut Network Deployments</h3>
-                    <p class="node-subtitle-muted" style="margin-top: 4px; font-size: 0.9rem;">Exploring low-power, localized system tracking configurations. Full open research guidelines mapped on my main <a href="https://github.com/sreeharierk" target="_blank" class="inline-text-link">GitHub Profile</a>.</p>
+                <h2 class="section-label-mono">Open Research Log</h2>
+                <div class="editorial-card">
+                    <h3 class="card-bold-header">Asturlab Link Configurations: System Telemetry Study</h3>
+                    <p class="card-subtitle-subtle" style="margin-top: 6px; font-size: 0.92rem; margin-bottom: 0;">
+                        Deconstructed metrics surrounding encrypted radio layouts running over edge environments. Code arrays pushed directly inside my central <a href="https://github.com/sreeharierk" target="_blank" class="editorial-anchor" style="font-weight:700;">GitHub Account</a>.
+                    </p>
                 </div>
             `;
         }
 
-        function mountTargetView(viewKey) {
+        function executeViewTransition(tabKey) {
             const viewport = document.getElementById('view-content');
             if (!viewport) return;
 
-            if (viewKey === 'work') viewport.innerHTML = renderWorkTemplate();
-            if (viewKey === 'projects') viewport.innerHTML = renderProjectsTemplate();
-            if (viewKey === 'writings') viewport.innerHTML = renderWritingsTemplate();
+            if (tabKey === 'work') viewport.innerHTML = viewAssemblerWork();
+            if (tabKey === 'projects') viewport.innerHTML = viewAssemblerProjects();
+            if (tabKey === 'writings') viewport.innerHTML = viewAssemblerWritings();
 
-            const triggers = document.querySelectorAll('.tab-trigger-btn');
-            for (let i = 0; i < triggers.length; i++) {
-                if (triggers[i].getAttribute('data-tab') === viewKey) {
-                    triggers[i].classList.add('active-tab');
+            const elementButtons = document.querySelectorAll('.tab-btn');
+            for (let i = 0; i < elementButtons.length; i++) {
+                if (elementButtons[i].getAttribute('data-tab') === tabKey) {
+                    elementButtons[i].classList.add('tab-active');
                 } else {
-                    triggers[i].classList.remove('active-tab');
+                    elementButtons[i].classList.remove('tab-active');
                 }
             }
         }
 
-        function initializeThemeLayer() {
-            const toggle = document.getElementById('theme-toggle');
-            if (!toggle) return;
+        function orchestrateThemeSystem() {
+            const button = document.getElementById('theme-toggle');
+            if (!button) return;
 
-            const persistentTheme = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-theme', persistentTheme);
-            toggle.textContent = persistentTheme === 'light' ? 'Light' : 'Dark';
+            const trackingCache = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', trackingCache);
+            button.textContent = trackingCache === 'light' ? 'Cream' : 'Obsidian';
 
-            toggle.addEventListener('click', function() {
-                const activeTheme = document.documentElement.getAttribute('data-theme');
-                const updateTheme = activeTheme === 'light' ? 'dark' : 'light';
+            button.addEventListener('click', function() {
+                const current = document.documentElement.getAttribute('data-theme');
+                const switchTarget = current === 'light' ? 'dark' : 'light';
                 
-                document.documentElement.setAttribute('data-theme', updateTheme);
-                toggle.textContent = updateTheme === 'light' ? 'Light' : 'Dark';
-                localStorage.setItem('theme', updateTheme);
+                document.documentElement.setAttribute('data-theme', switchTarget);
+                button.textContent = switchTarget === 'light' ? 'Cream' : 'Obsidian';
+                localStorage.setItem('theme', switchTarget);
             });
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            initializeThemeLayer();
-            mountTargetView('work');
+            orchestrateThemeSystem();
+            executeViewTransition('work');
 
-            const links = document.querySelectorAll('.tab-trigger-btn');
-            for (let i = 0; i < links.length; i++) {
-                links[i].addEventListener('click', function(e) {
-                    const target = e.target.getAttribute('data-tab');
-                    mountTargetView(target);
+            const navigators = document.querySelectorAll('.tab-btn');
+            for (let i = 0; i < navigators.length; i++) {
+                navigators[i].addEventListener('click', function(event) {
+                    const viewID = event.target.getAttribute('data-tab');
+                    executeViewTransition(viewID);
                 });
             }
         });

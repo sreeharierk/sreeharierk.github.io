@@ -18,6 +18,8 @@
             --shadow-soft: 0 4px 20px -2px rgba(40, 32, 20, 0.04), 0 2px 6px -1px rgba(40, 32, 20, 0.02);
             --accent: #d97706;           /* Amber/gold minimal interactive accents */
             --tag-bg: #f5f0e6;           /* Editorial tag chip surface */
+            --neon-teal: #00f2fe;        /* Blazing neon teal for light mode headings */
+            --neon-teal-glow: 0 0 10px rgba(0, 242, 254, 0.6), 0 0 20px rgba(0, 242, 254, 0.3);
         }
 
         :root[data-theme="dark"] {
@@ -29,6 +31,8 @@
             --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.2);
             --accent: #f59e0b;
             --tag-bg: #242220;
+            --neon-teal: #00f2fe;        /* Electric neon teal stays vibrant in dark mode */
+            --neon-teal-glow: 0 0 12px rgba(0, 242, 254, 0.8), 0 0 25px rgba(0, 242, 254, 0.4);
         }
 
         * {
@@ -41,7 +45,6 @@
         body {
             background-color: var(--bg);
             color: var(--text-primary);
-            /* Premium clean typography config mimicking layout weight metrics */
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             font-size: 15px;
             line-height: 1.6;
@@ -92,7 +95,7 @@
         }
 
         /* -------------------------------------------------------------
-           Branded Identity Bio Module
+           Branded Identity Bio Module with Typing Effects
            ------------------------------------------------------------- */
         .intro-hero {
             margin-bottom: 56px;
@@ -105,10 +108,18 @@
             margin-bottom: 16px;
         }
 
+        /* Neon Teal Typing Heading */
         h1 {
             font-size: 2.2rem;
-            font-weight: 700;
-            letter-spacing: -0.04em;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--neon-teal);
+            text-shadow: var(--neon-teal-glow);
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid var(--text-primary); /* Typing blinking cursor */
+            width: 0;
+            animation: typingMain 2s steps(10, end) forwards, blinkCursor 0.75s step-end infinite;
         }
 
         .pill-tag {
@@ -202,16 +213,24 @@
         @media (max-width: 640px) {
             .split-dashboard-grid { grid-template-columns: 1fr; gap: 40px; }
             body { padding: 50px 16px; }
+            h1 { font-size: 1.8rem; }
         }
 
+        /* Neon Teal Tab Headings with custom trigger width layout definitions */
         .section-label-mono {
             font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-            font-size: 0.72rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            color: var(--text-secondary);
+            color: var(--neon-teal);
+            text-shadow: var(--neon-teal-glow);
             letter-spacing: 0.08em;
             margin-bottom: 24px;
             font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid var(--text-secondary);
+            width: 0;
+            animation: typingSection 1.2s steps(15, end) forwards;
         }
 
         .vertical-layout-stack {
@@ -232,7 +251,7 @@
 
         .editorial-card:hover {
             transform: translateY(-2px);
-            border-color: var(--accent);
+            border-color: var(--neon-teal);
         }
 
         .card-meta-row {
@@ -326,6 +345,24 @@
             font-size: 0.75rem;
             color: var(--text-secondary);
         }
+
+        /* -------------------------------------------------------------
+           Typing Engine Core Dynamic Keyframes
+           ------------------------------------------------------------- */
+        @keyframes typingMain {
+            from { width: 0; }
+            to { width: 200px; } /* Fits the structural width layout of "Sreehari S" */
+        }
+
+        @keyframes typingSection {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blinkCursor {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--text-primary); }
+        }
     </style>
 </head>
 <body>
@@ -407,7 +444,7 @@
             },
             {
                 title: "Subsurface Radar Machine Vision (RGPR)",
-                desc: "Convolutional neural network tools deployed to parse Ground Penetrating Radar simulations to locate survivors under debris fields[cite: 1].",
+                desc: "Convolutional neural network tools deployed to parse Ground Penetrating Radar data to locate survivors under soil during landslide[cite: 1].",
                 images: ["pic3.jpg"],
                 repo: "https://github.com/sreeharierk"
             }
@@ -498,7 +535,7 @@
                 `;
             }
             return `
-                <h2 class="section-label-mono">Core Engineering Prototypes</h2>
+                <h2 class="section-label-mono">Engineering Components</h2>
                 <div class="vertical-layout-stack">${dynamicProjectsHTML}</div>
             `;
         }

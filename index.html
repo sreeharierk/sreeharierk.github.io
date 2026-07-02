@@ -4,336 +4,387 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sreehari S — Product Manager & Founder</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+    
     <style>
-        /* Premium Typography-First Variable Mapping */
+        /* -------------------------------------------------------------
+           Marius-Inspired Pro UI System Variables & Reset 
+           ------------------------------------------------------------- */
         :root[data-theme="light"] {
             --bg: #ffffff;
-            --text: #111111;
-            --text-muted: #666666;
-            --border: #eeeeee;
-            --accent: #0044ff;
-            --tag-bg: #f5f5f7;
-            --hover-bg: #f9f9f9;
+            --text-primary: #000000;
+            --text-secondary: #646464;
+            --border-subtle: #eaeaea;
+            --accent-link: #0022ff;
+            --tag-surface: #f6f6f6;
+            --active-indicator: #000000;
         }
 
         :root[data-theme="dark"] {
-            --bg: #0b0b0c;
-            --text: #f5f5f7;
-            --text-muted: #8e8e93;
-            --border: #1c1c1e;
-            --accent: #2f74ff;
-            --tag-bg: #1c1c1e;
-            --hover-bg: #121214;
+            --bg: #000000;
+            --text-primary: #ffffff;
+            --text-secondary: #8a8a8f;
+            --border-subtle: #1c1c1e;
+            --accent-link: #3a7fff;
+            --tag-surface: #1c1c1e;
+            --active-indicator: #ffffff;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            -webkit-font-smoothing: antialiased;
         }
 
         body {
             background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
-            letter-spacing: -0.01em;
-            padding: 60px 24px;
-            transition: background-color 0.2s, color 0.2s;
+            color: var(--text-primary);
+            /* System Font Stack used by high-end UI engineers for native speed */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 15px;
+            line-height: 1.5;
+            letter-spacing: -0.015em;
+            padding: 80px 24px;
+            transition: background-color 0.15s ease, color 0.15s ease;
         }
 
-        .wrapper {
-            max-width: 680px;
+        .layout-container {
+            max-width: 620px;
             margin: 0 auto;
         }
 
-        /* Navbar Layout */
-        .nav-bar {
+        /* -------------------------------------------------------------
+           Header & Main Nav Area Layout
+           ------------------------------------------------------------- */
+        .navigation-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 64px;
+            margin-bottom: 56px;
         }
 
-        .brand {
-            font-family: 'Space Mono', monospace;
-            font-weight: 700;
-            font-size: 0.95rem;
+        .site-signature {
+            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: -0.02em;
         }
 
-        .mono-btn {
-            font-family: 'Space Mono', monospace;
-            font-size: 0.8rem;
+        .utility-btn {
+            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace;
+            font-size: 0.75rem;
             background: transparent;
-            color: var(--text);
-            border: 1px solid var(--border);
-            padding: 6px 12px;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-subtle);
+            padding: 4px 10px;
             border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.2s;
         }
 
-        .mono-btn:hover {
-            background-color: var(--tag-bg);
+        .utility-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--text-primary);
         }
 
-        /* Identity Layout Section */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
+        /* -------------------------------------------------------------
+           Identity Hero Module
+           ------------------------------------------------------------- */
+        .profile-hero {
             margin-bottom: 48px;
         }
 
-        .hero-title {
+        .identity-header {
             display: flex;
-            align-items: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            letter-spacing: -0.04em;
-        }
-
-        .status-indicator {
-            font-family: 'Space Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            background: var(--tag-bg);
-            padding: 4px 10px;
-            border-radius: 100px;
-            border: 1px solid var(--border);
-        }
-
-        .bio {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            font-weight: 400;
-            letter-spacing: -0.02em;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 16px;
-        }
-
-        .link-item {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 500;
-            border-bottom: 1px solid var(--text);
-            padding-bottom: 1px;
-        }
-
-        .link-item:hover {
-            color: var(--accent);
-            border-color: var(--accent);
-        }
-
-        /* Micro Router Navigation Layout */
-        .tab-router {
-            display: flex;
-            gap: 8px;
-            margin-bottom: -1px;
-        }
-
-        .tab-link {
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            font-size: 1rem;
-            font-weight: 500;
-            padding: 8px 16px;
-            cursor: pointer;
-            position: relative;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
-        .tab-link.active {
-            color: var(--text);
-            font-weight: 600;
-        }
-
-        .tab-link.active::after {
-            content: "";
-            position: absolute;
-            bottom: -1px;
-            left: 16px;
-            right: 16px;
-            height: 2px;
-            background-color: var(--text);
-        }
-
-        .divider {
-            border: 0;
-            height: 1px;
-            background: var(--border);
-            margin: 0 0 40px 0;
-        }
-
-        /* System Render Architecture Styling */
-        .list-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-        }
-
-        .list-item-header {
-            display: flex;
-            justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 4px;
-        }
-
-        .title-bold {
-            font-size: 1.1rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-        }
-
-        .metadata-mono {
-            font-family: 'Space Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .subtitle-muted {
-            font-size: 0.95rem;
-            color: var(--text-muted);
+            gap: 12px;
             margin-bottom: 12px;
         }
 
-        .bullet-points {
-            list-style: none;
+        h1 {
+            font-size: 1.85rem;
+            font-weight: 700;
+            letter-spacing: -0.035em;
+            color: var(--text-primary);
+        }
+
+        .status-badge {
+            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace;
+            font-size: 0.68rem;
+            color: var(--text-secondary);
+            background: var(--tag-surface);
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .profile-bio {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .interactive-links-row {
             display: flex;
-            flex-direction: column;
-            gap: 8px;
+            gap: 16px;
         }
 
-        .bullet-points li {
-            font-size: 0.95rem;
-            color: var(--text-muted);
+        .clean-anchor {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--text-primary);
+            padding-bottom: 1px;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .clean-anchor:hover {
+            color: var(--accent-link);
+            border-color: var(--accent-link);
+        }
+
+        /* -------------------------------------------------------------
+           Astro-Inspired Custom Tab Router Layout
+           ------------------------------------------------------------- */
+        .navigation-tabs-wrapper {
+            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: 36px;
+        }
+
+        .tab-layout-row {
+            display: flex;
+            gap: 4px;
+            margin-bottom: -1px;
+        }
+
+        .tab-trigger-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            font-weight: 500;
+            padding: 8px 12px;
+            cursor: pointer;
             position: relative;
-            padding-left: 16px;
+            font-family: inherit;
+            letter-spacing: inherit;
         }
 
-        .bullet-points li::before {
-            content: "·";
+        .tab-trigger-btn.active-tab {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .tab-trigger-btn.active-tab::after {
+            content: "";
             position: absolute;
-            left: 0;
-            color: var(--text);
-            font-weight: bold;
+            bottom: 0;
+            left: 12px;
+            right: 12px;
+            height: 1px;
+            background-color: var(--active-indicator);
         }
 
-        /* Dynamic grid structural block */
-        .split-layout {
+        /* -------------------------------------------------------------
+           Dynamic Grid Engine Components
+           ------------------------------------------------------------- */
+        .split-grid-view {
             display: grid;
-            grid-template-columns: 1.25fr 1fr;
-            gap: 48px;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 40px;
         }
 
         @media (max-width: 640px) {
-            .split-layout { grid-template-columns: 1fr; gap: 40px; }
+            .split-grid-view { grid-template-columns: 1fr; gap: 36px; }
             body { padding: 40px 16px; }
-            h1 { font-size: 2rem; }
         }
 
-        /* Interactive Card Framework */
-        .interactive-row {
+        .column-headline-mono {
+            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            letter-spacing: 0.06em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .modular-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .experience-node-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2px;
+        }
+
+        .bold-node-title {
+            font-size: 0.98rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .mono-timestamp {
+            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace;
+            font-size: 0.76rem;
+            color: var(--text-secondary);
+        }
+
+        .node-subtitle-muted {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .minimal-bullet-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .minimal-bullet-list li {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 14px;
+        }
+
+        .minimal-bullet-list li::before {
+            content: "·";
+            position: absolute;
+            left: 0;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        /* -------------------------------------------------------------
+           Premium Custom Embedded Items Styles
+           ------------------------------------------------------------- */
+        .interactive-showcase-box {
             display: block;
             text-decoration: none;
             color: inherit;
-            border: 1px solid var(--border);
-            padding: 24px;
-            border-radius: 8px;
-            transition: background-color 0.2s, border-color 0.2s;
+            border: 1px solid var(--border-subtle);
+            padding: 20px;
+            border-radius: 6px;
+            transition: background-color 0.1s ease, border-color 0.1s ease;
+            margin-bottom: 12px;
         }
 
-        .interactive-row:hover {
+        .interactive-showcase-box:hover {
             background-color: var(--hover-bg);
-            border-color: var(--text);
+            border-color: var(--text-primary);
         }
 
-        .section-label-mono {
-            font-family: 'Space Mono', monospace;
+        .inline-text-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid var(--text-secondary);
+        }
+
+        .inline-text-link:hover {
+            color: var(--accent-link);
+            border-color: var(--accent-link);
+        }
+
+        /* HIGH PERFORMANCE HORIZONTAL IMAGE SLIDER */
+        .horizontal-slider-frame {
+            width: 100%;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            border-radius: 4px;
+            border: 1px solid var(--border-subtle);
+            margin: 12px 0;
+            scrollbar-width: none;
+        }
+        .horizontal-slider-frame::-webkit-scrollbar { display: none; }
+        .slider-flex-track { display: flex; }
+        .slider-image-element {
+            width: 100%;
+            flex-shrink: 0;
+            scroll-snap-align: start;
+            object-fit: cover;
+            aspect-ratio: 16 / 9;
+            background: var(--tag-surface);
+        }
+
+        .system-footer {
+            margin-top: 72px;
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 20px;
+        }
+
+        .footer-mono-text {
+            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace;
             font-size: 0.75rem;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            letter-spacing: 0.05em;
-            margin-bottom: 16px;
-        }
-
-        .footer {
-            margin-top: 80px;
-            border-top: 1px solid var(--border);
-            padding-top: 24px;
-        }
-
-        .mono-text {
-            font-family: 'Space Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--text-muted);
+            color: var(--text-secondary);
         }
     </style>
 </head>
 <body>
 
-    <main class="wrapper">
-        <nav class="nav-bar">
-            <div class="brand">sreehari.s</div>
-            <div class="nav-controls">
-                <button id="theme-toggle" class="mono-btn" aria-label="Toggle Theme">⊙ Light</button>
+    <main class="layout-container">
+        <!-- Main Top Bar Nav Module -->
+        <nav class="navigation-row">
+            <div class="site-signature">sreehari.s</div>
+            <div class="navigation-controls">
+                <button id="theme-toggle" class="utility-btn" aria-label="Toggle System UI Color">Light</button>
             </div>
         </nav>
 
-        <header class="hero">
-            <div class="hero-title">
+        <!-- Core Profile Branding Layer -->
+        <header class="profile-hero">
+            <div class="identity-header">
                 <h1>Sreehari S</h1>
-                <span class="status-indicator">Available for Roles</span>
+                <span class="status-badge">2026</span>
             </div>
-            <p class="bio">
-                Social entrepreneur turned product manager based in India. 3+ years combining product strategy, business development, and community-driven data solutions.
+            <p class="profile-bio">
+                Social entrepreneur turned product manager based in India[cite: 1]. 3+ years combining product strategy, business development, and community-driven data solutions[cite: 1].
             </p>
-            <div class="social-links">
-                <a href="mailto:sreeharierk@gmail.com" class="link-item">Email</a>
-                <a href="https://linkedin.com/in/sreeharierk" target="_blank" class="link-item">LinkedIn</a>
-                <a href="https://github.com/sreeharierk" target="_blank" class="link-item">GitHub</a>
+            <div class="interactive-links-row">
+                <a href="mailto:sreeharierk@gmail.com" class="clean-anchor">Email</a>
+                <a href="https://linkedin.com/in/sreeharierk" target="_blank" class="clean-anchor">LinkedIn</a>
+                <a href="https://github.com/sreeharierk" target="_blank" class="clean-anchor">GitHub</a>
             </div>
         </header>
 
-        <div class="tab-router">
-            <button class="tab-link active" data-tab="work">Work</button>
-            <button class="tab-link" data-tab="projects">Projects</button>
-            <button class="tab-link" data-tab="writings">Writings</button>
+        <!-- Dynamic View Router Navigation Segment -->
+        <div class="navigation-tabs-wrapper">
+            <div class="tab-layout-row">
+                <button class="tab-trigger-btn active-tab" data-tab="work">Work</button>
+                <button class="tab-trigger-btn" data-tab="projects">Projects</button>
+                <button class="tab-trigger-btn" data-tab="writings">Writings</button>
+            </div>
         </div>
 
-        <hr class="divider">
-
+        <!-- System Routing Mount Node -->
         <div id="view-content"></div>
 
-        <footer class="footer">
-            <p class="mono-text">© 2026 Sreehari S. Built with maximum performance.</p>
+        <!-- Base Layout Info Footer -->
+        <footer class="system-footer">
+            <p class="footer-mono-text">Last updated: July 2026</p>
         </footer>
     </main>
 
     <script>
-        // Resume Data Framework
+        // High Quality Managed Resume Structures Layer
         const workHistory = [
             {
                 role: "Product Manager",
                 company: "SectorQube",
                 date: "2024 — 2025",
                 bullets: [
-                    "Designed QC & Technician applications, boosting operational visibility and cutting core system bugs by 30%.",
-                    "Developed unified SOPs for installation, maintenance, and assembly, reducing factory floor production delays by 20%.",
-                    "Built ML model components optimized for intrusion detection (92% accuracy) and predictive hardware analytics."
+                    "Designed QC & Technician applications, boosting operational visibility and cutting core system bugs by 30%[cite: 1].",
+                    "Developed unified SOPs for installation, maintenance, and assembly, reducing factory floor production delays by 20%[cite: 1].",
+                    "Built ML model components optimized for intrusion detection (92% accuracy) and predictive hardware analytics[cite: 1]."
                 ]
             },
             {
@@ -341,74 +392,35 @@
                 company: "Bitnut Technologies",
                 date: "2021 — 2024",
                 bullets: [
-                    "Conducted over 100 customer interviews to validate high-durability telecommunication platforms.",
-                    "Developed Asturlab, a custom long-range hardware radio network with integrated hardware encryption layers."
-                ]
-            },
-            {
-                role: "Business Development & Sales Intern",
-                company: "Jordensky",
-                date: "2023",
-                bullets: [
-                    "Built early-stage founder networks, coordinating investor access pipelines for growth capital optimization."
-                ]
-            },
-            {
-                role: "Community Management Intern",
-                company: "The Product Folks",
-                date: "2022",
-                bullets: [
-                    "Coordinated the scale launch of Insurjo and Web3 Fundamentals digital hubs, driving 55,000+ customer sign-ups."
+                    "Conducted over 100 customer interviews to validate high-durability telecommunication platforms[cite: 1].",
+                    "Developed Asturlab, a custom long-range hardware radio network with integrated hardware encryption layers[cite: 1]."
                 ]
             }
         ];
 
-        const hardwareProjects = [
+        const projectRecords = [
             {
                 title: "NDSM Stress Tech Anomaly Detector",
-                desc: "Neurofeedback instrumentation using BioAmp processing blocks to dynamically trigger auditory feedback arrays based on raw biometric trends."
+                desc: "Neurofeedback instrumentation using BioAmp processing blocks to dynamically trigger auditory feedback arrays based on raw biometric trends[cite: 1].",
+                images: ["pic1.jpg", "pic2.jpg"], 
+                link: "https://github.com/sreeharierk"
             },
             {
                 title: "RGPR Landslide Mapping Radar",
-                desc: "Convolutional neural network mapping tools engineered to scan subsurface Ground Penetrating Radar data for anomalies during natural disaster operations."
+                desc: "Convolutional neural network mapping tools engineered to scan subsurface Ground Penetrating Radar data for anomalies during natural disaster operations[cite: 1].",
+                images: ["pic3.jpg"],
+                link: "https://github.com/sreeharierk"
             }
         ];
 
-        const openSourceContributions = [
-            {
-                title: "Global Data Science Repository Curation",
-                desc: "Curated open-access technical guide repository containing community training materials. Achieved 5,100+ stars and 520+ forks from active engineering contributors."
-            }
-        ];
-
-        const academicData = {
+        const academicProfile = {
             degree: "B.Tech, Electronics & Communication",
             college: "NSS College of Engineering",
             period: "2018 — 2022",
-            details: "Student Council Association Chairperson (ELACSTA) & Institution's Innovation Coordinator."
+            details: "Student Council Association Chairperson (ELACSTA) & Institution's Innovation Coordinator[cite: 1]."
         };
 
-        const recognitionData = [
-            "KSUM Innovation Grant Recipient (Chosen from 625 competing engineering squads)",
-            "Top 8 Placement, IIT-M GDC I-NCUBATE System Cohort 16"
-        ];
-
-        const writingsData = [
-            {
-                title: "Vibe Coding: How I Built a Digital Bookshelf with Claude Code",
-                date: "Jun 29, 2026",
-                readTime: "4 min read",
-                preview: "I had over 460 books and no catalog. I decided to solve it with AI using natural language instructions. Here is how execution keeps getting cheaper, but taste still does not..."
-            },
-            {
-                title: "Building Asturlab: Designing Hardware Protocols Under Extreme Technical Constraints",
-                date: "Mar 14, 2026",
-                readTime: "7 min read",
-                preview: "A deep dive into building long-range radio infrastructure without standard cloud accessibility, balancing device power limits and hardware data packet encryption."
-            }
-        ];
-
-        function renderWorkView() {
+        function renderWorkTemplate() {
             let workHTML = '';
             for (let i = 0; i < workHistory.length; i++) {
                 const item = workHistory[i];
@@ -417,42 +429,41 @@
                     bulletsHTML += '<li>' + item.bullets[j] + '</li>';
                 }
                 workHTML += `
-                    <div class="work-block" style="margin-bottom: 32px;">
-                        <div class="list-item-header">
-                            <h3 class="title-bold">${item.role}</h3>
-                            <span class="metadata-mono">${item.date}</span>
+                    <div>
+                        <div class="experience-node-header">
+                            <h3 class="bold-node-title">${item.role}</h3>
+                            <span class="mono-timestamp">${item.date}</span>
                         </div>
-                        <div class="subtitle-muted">${item.company}</div>
-                        <ul class="bullet-points">${bulletsHTML}</ul>
+                        <div class="node-subtitle-muted">${item.company}</div>
+                        <ul class="minimal-bullet-list">${bulletsHTML}</ul>
                     </div>
                 `;
             }
 
-            let awardsHTML = '';
-            for (let k = 0; k < recognitionData.length; k++) {
-                awardsHTML += '<li>' + recognitionData[k] + '</li>';
-            }
-
             return `
-                <div class="split-layout">
+                <a href="Sreehari_S_FlowCV_Resume_2026-07-02.pdf" target="_blank" class="interactive-showcase-box">
+                    <div class="experience-node-header">
+                        <h3 class="bold-node-title">View Verified Resume PDF ↗</h3>
+                        <span class="mono-timestamp">PDF Document</span>
+                    </div>
+                    <p class="node-subtitle-muted" style="margin-top: 4px; margin-bottom: 0; font-size: 0.88rem;">Click to pull the full professional dossier sheet.</p>
+                </a>
+                
+                <div class="split-grid-view" style="margin-top: 36px;">
                     <div>
-                        <h2 class="section-label-mono">Experience</h2>
-                        <div class="list-stack">${workHTML}</div>
+                        <h2 class="column-headline-mono">Experience</h2>
+                        <div class="modular-stack">${workHTML}</div>
                     </div>
                     <div>
-                        <h2 class="section-label-mono">Education & Honors</h2>
-                        <div class="list-stack" style="gap: 32px;">
+                        <h2 class="column-headline-mono">Education</h2>
+                        <div class="modular-stack">
                             <div>
-                                <div class="list-item-header">
-                                    <h3 class="title-bold" style="font-size: 1rem;">${academicData.degree}</h3>
-                                    <span class="metadata-mono">${academicData.period}</span>
+                                <div class="experience-node-header">
+                                    <h3 class="bold-node-title" style="font-size: 0.95rem;">${academicProfile.degree}</h3>
+                                    <span class="mono-timestamp">${academicProfile.period}</span>
                                 </div>
-                                <div class="subtitle-muted" style="margin-bottom: 4px;">${academicData.college}</div>
-                                <p class="subtitle-muted" style="font-size: 0.85rem; font-style: italic;">${academicData.details}</p>
-                            </div>
-                            <hr style="border: 0; height: 1px; background: var(--border);">
-                            <div>
-                                <ul class="bullet-points">${awardsHTML}</ul>
+                                <div class="node-subtitle-muted" style="margin-bottom: 2px;">${academicProfile.college}</div>
+                                <p class="node-subtitle-muted" style="font-size: 0.84rem; font-style: italic;">${academicProfile.details}</p>
                             </div>
                         </div>
                     </div>
@@ -460,105 +471,90 @@
             `;
         }
 
-        function renderProjectsView() {
+        function renderProjectsTemplate() {
             let projectsHTML = '';
-            for (let i = 0; i < hardwareProjects.length; i++) {
-                const proj = hardwareProjects[i];
+            for (let i = 0; i < projectRecords.length; i++) {
+                const proj = projectRecords[i];
+                let imagesHTML = '';
+                for (let j = 0; j < proj.images.length; j++) {
+                    imagesHTML += `<img src="${proj.images[j]}" alt="Portfolio Slider Resource" class="slider-image-element">`;
+                }
+
                 projectsHTML += `
-                    <div class="interactive-row" style="margin-bottom: 16px;">
-                        <div class="list-item-header">
-                            <h3 class="title-bold">${proj.title}</h3>
+                    <div class="interactive-showcase-box" style="margin-bottom: 24px;">
+                        <div class="experience-node-header">
+                            <h3 class="bold-node-title">${proj.title}</h3>
+                            <a href="${proj.link}" target="_blank" class="mono-timestamp inline-text-link">Repository ↗</a>
                         </div>
-                        <p class="subtitle-muted" style="margin: 4px 0 0 0; font-size: 0.95rem;">${proj.desc}</p>
+                        <p class="node-subtitle-muted" style="margin: 4px 0 12px 0; font-size: 0.9rem;">${proj.desc}</p>
+                        
+                        <div class="horizontal-slider-frame">
+                            <div class="slider-flex-track">${imagesHTML}</div>
+                        </div>
                     </div>
                 `;
             }
-
-            let ossHTML = '';
-            for (let j = 0; j < openSourceContributions.length; j++) {
-                const oss = openSourceContributions[j];
-                ossHTML += `
-                    <div class="interactive-row">
-                        <h3 class="title-bold">${oss.title}</h3>
-                        <p class="subtitle-muted" style="margin: 4px 0 0 0; font-size: 0.95rem;">${oss.desc}</p>
-                    </div>
-                `;
-            }
-
             return `
-                <h2 class="section-label-mono">Selected Projects</h2>
-                <div class="list-stack" style="margin-bottom: 48px;">${projectsHTML}</div>
-                <h2 class="section-label-mono">Open Source</h2>
-                <div class="list-stack">${ossHTML}</div>
+                <h2 class="column-headline-mono">Engineering Components</h2>
+                <div class="modular-stack">${projectsHTML}</div>
             `;
         }
 
-        function renderWritingsView() {
-            let writingsHTML = '';
-            for (let i = 0; i < writingsData.length; i++) {
-                const post = writingsData[i];
-                writingsHTML += `
-                    <a href="#" class="interactive-row" style="margin-bottom: 16px;" onclick="event.preventDefault();">
-                        <div class="list-item-header">
-                            <h3 class="title-bold" style="color: var(--accent);">${post.title}</h3>
-                            <span class="metadata-mono">${post.date}</span>
-                        </div>
-                        <p class="subtitle-muted" style="margin: 4px 0 8px 0; font-size: 0.95rem;">${post.preview}</p>
-                        <span class="metadata-mono" style="font-size: 0.75rem;">${post.readTime}</span>
-                    </a>
-                `;
-            }
+        function renderWritingsTemplate() {
             return `
-                <h2 class="section-label-mono">Writings</h2>
-                <div class="list-stack">${writingsHTML}</div>
+                <h2 class="column-headline-mono">Publications</h2>
+                <div class="interactive-showcase-box">
+                    <h3 class="bold-node-title">Systems Architecture Case: Bitnut Network Deployments</h3>
+                    <p class="node-subtitle-muted" style="margin-top: 4px; font-size: 0.9rem;">Exploring low-power, localized system tracking configurations. Full open research guidelines mapped on my main <a href="https://github.com/sreeharierk" target="_blank" class="inline-text-link">GitHub Profile</a>.</p>
+                </div>
             `;
         }
 
-        function setView(viewName) {
-            const container = document.getElementById('view-content');
-            if (!container) return;
+        function mountTargetView(viewKey) {
+            const viewport = document.getElementById('view-content');
+            if (!viewport) return;
 
-            if (viewName === 'work') container.innerHTML = renderWorkView();
-            if (viewName === 'projects') container.innerHTML = renderProjectsView();
-            if (viewName === 'writings') container.innerHTML = renderWritingsView();
+            if (viewKey === 'work') viewport.innerHTML = renderWorkTemplate();
+            if (viewKey === 'projects') viewport.innerHTML = renderProjectsTemplate();
+            if (viewKey === 'writings') viewport.innerHTML = renderWritingsTemplate();
 
-            const tabs = document.querySelectorAll('.tab-link');
-            for (let i = 0; i < tabs.length; i++) {
-                if (tabs[i].getAttribute('data-tab') === viewName) {
-                    tabs[i].classList.add('active');
+            const triggers = document.querySelectorAll('.tab-trigger-btn');
+            for (let i = 0; i < triggers.length; i++) {
+                if (triggers[i].getAttribute('data-tab') === viewKey) {
+                    triggers[i].classList.add('active-tab');
                 } else {
-                    tabs[i].classList.remove('active');
+                    triggers[i].classList.remove('active-tab');
                 }
             }
         }
 
-        function initTheme() {
-            const themeToggle = document.getElementById('theme-toggle');
-            if (!themeToggle) return;
+        function initializeThemeLayer() {
+            const toggle = document.getElementById('theme-toggle');
+            if (!toggle) return;
 
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            themeToggle.textContent = savedTheme === 'light' ? '⊙ Light' : '☾ Dark';
+            const persistentTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', persistentTheme);
+            toggle.textContent = persistentTheme === 'light' ? 'Light' : 'Dark';
 
-            themeToggle.addEventListener('click', function() {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+            toggle.addEventListener('click', function() {
+                const activeTheme = document.documentElement.getAttribute('data-theme');
+                const updateTheme = activeTheme === 'light' ? 'dark' : 'light';
                 
-                document.documentElement.setAttribute('data-theme', nextTheme);
-                themeToggle.textContent = nextTheme === 'light' ? '⊙ Light' : '☾ Dark';
-                localStorage.setItem('theme', nextTheme);
+                document.documentElement.setAttribute('data-theme', updateTheme);
+                toggle.textContent = updateTheme === 'light' ? 'Light' : 'Dark';
+                localStorage.setItem('theme', updateTheme);
             });
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            initTheme();
-            setView('work');
+            initializeThemeLayer();
+            mountTargetView('work');
 
-            const tabButtons = document.querySelectorAll('.tab-link');
-            for (let i = 0; i < tabButtons.length; i++) {
-                tabButtons[i].addEventListener('click', function(e) {
-                    const targetTab = e.target.getAttribute('data-tab');
-                    setView(targetTab);
+            const links = document.querySelectorAll('.tab-trigger-btn');
+            for (let i = 0; i < links.length; i++) {
+                links[i].addEventListener('click', function(e) {
+                    const target = e.target.getAttribute('data-tab');
+                    mountTargetView(target);
                 });
             }
         });
